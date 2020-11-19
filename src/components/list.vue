@@ -4,13 +4,14 @@
     <v-container grid-list-md>
       <v-layout row wrap>
         <v-flex xs6 sm4 lg2 v-for="(pokemon, index) in limit" :key="'poke' + index">
-          <v-card class="ma-1" elevation="2" outlined shaped dark>
+          <v-card class="ma-1" elevation="2" outlined shaped>
               <v-img
               :src="`${imageUrl}` + (index + 1) + '.png'"
               contain
               max-height="400"
               max-width="400"
-              class="rounded-circle grey darken-4  ma-1 "
+              class="rounded-circle grey ma-1"
+              :class="[isDarkTheme ? 'darken-4' : 'lighten-4']"
               ></v-img>
             <v-divider></v-divider>
             <v-card-title class="d-flex justify-space-between mb-6 text-capitalize" display: block
@@ -46,6 +47,9 @@ export default {
   computed: {
     limit() {
       return this.pokemons.filter((x, index) => index <= 892);
+    },
+    isDarkTheme() {
+      return this.$vuetify.theme.dark;
     },
   },
   data: () => ({

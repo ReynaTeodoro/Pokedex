@@ -1,8 +1,8 @@
 <template >
   <v-container class="pa-0" v-click-outside="close">
     <v-row justify="center" v-if="show">
-      <v-card dark v-if="randomDescription" class="pa-2 pt-0">
-        <v-card-title class="text-capitalize indigo darken-4" dark>
+      <v-card v-if="randomDescription" class="pa-2 pt-0">
+        <v-card-title class="text-capitalize indigo darken-4">
           {{ name.replace(/-/g, ' ') }}
         </v-card-title>
         <v-card-subtitle class="indigo darken-4">
@@ -18,7 +18,6 @@
       v-bind="attrs"
       type="card-heading,list-item-three-line"
       v-else
-      dark
     ></v-skeleton-loader>
   </v-container>
 </template>

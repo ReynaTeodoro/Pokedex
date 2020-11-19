@@ -1,7 +1,7 @@
-<template>
+<template >
   <v-container class="pa-0" v-click-outside="close">
-    <v-card v-if="ability" elevation="2" outlined dark>
-      <v-card-title class="text-capitalize cyan">
+    <v-card v-if="ability" elevation="2">
+      <v-card-title class="text-capitalize cyan ma-0">
         {{ ability.name.replace(/-/g, ' ') }}
       </v-card-title>
       <v-card-subtitle class="cyan">
@@ -10,8 +10,6 @@
       <v-card-text class="mt-2">
         {{ ability.effect_entries[1].effect }}
       </v-card-text>
-
-      <v-divider></v-divider>
     </v-card>
 
     <v-skeleton-loader
@@ -19,7 +17,6 @@
       v-bind="attrs"
       type="card-heading,list-item-three-line"
       v-else
-      dark
     ></v-skeleton-loader>
   </v-container>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <v-container class="pa-0">
     <div>
-      <v-card v-if="missing" dark class="d-flex justify-start pa-1">
+      <v-card v-if="missing" class="d-flex justify-start pa-1">
         <v-img
           :src="require(`@/assets/icons/squirtlecrying.gif${''}`)"
           class="rounded"
@@ -14,7 +14,7 @@
         >
       </v-card>
     </div>
-    <v-card dark v-if="show" class="pa-2">
+    <v-card v-if="show" class="pa-2">
       <v-btn @click="closeDetail()" icon color="grey" class="ma-1 mb-0">
         <v-icon>mdi-close</v-icon>
       </v-btn>
@@ -88,7 +88,8 @@
         <div id="right">
           <v-img
             :src="`${imageUrl}` + pokemon.id + '.png'"
-            class="rounded-circle grey darken-4 ma-2"
+            class="rounded-circle grey ma-2"
+            :class="[isDarkTheme ? 'darken-4' : 'lighten-4']"
           ></v-img>
           <div class="d-flex justify-center">
             <div v-for="(type, index) in pokemon.types" :key="'typ' + index">
@@ -185,6 +186,11 @@ export default {
       },
     },
   }),
+  computed: {
+    isDarkTheme() {
+      return this.$vuetify.theme.dark;
+    },
+  },
   methods: {
     async fetchData() {
       try {
