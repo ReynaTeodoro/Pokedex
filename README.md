@@ -1,29 +1,30 @@
-# Pokedex
+<h1 align="center"><img src="https://raw.githubusercontent.com/ReynaTeodoro/pokedex/main/public/pokedex.png" width="25"> Pokedex <img src="https://raw.githubusercontent.com/ReynaTeodoro/pokedex/main/public/pokedex.png" width="25"></h1>
 
 ## Project setup 🎆👌
 
 ```
-npm install
+$ npm install
 ```
 
 ### Compiles and hot-reloads 🔥 for development 💪
 
 ```
-npm run serve
+$ npm run serve
 ```
 
 ### Compiles and minifies for production 🚀
 
 ```
-npm run build
+$ npm run build
 ```
 
 ### Lints and fixes files 🔧✍
 
 ```
-npm run lint
+$ npm run lint
 ```
 
-### Customize configuration ✨😁
+## Credits 😁🎉
 
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- [PokeAPI](https://github.com/PokeAPI/pokeapi)
+- [Sprites](https://github.com/PokeAPI/sprites)
