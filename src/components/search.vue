@@ -19,29 +19,19 @@
           width="100"
         />
         <v-col cols="1" style="min-width: 100px; max-width: 100%" class="flex-grow-1 flex-shrink-0">
-          <v-form>
-            <div class="d-flex align-center flex-grow-1">
-              <v-text-field
-                color="red lighten-2"
-                v-model="searchvalue"
-                class="d-flex ml-3 mt-6"
-                clearable
-                outlined
-                dense
-                placeholder="Search🔍"
-              ></v-text-field>
-              <v-btn
-                class="mx-2"
-                fab
-                small
-                @click="setpokemonUrl"
-                type="submit"
-                color="red lighten-1  hidden-sm-and-down"
-              >
-                <v-icon> mdi-magnify </v-icon>
-              </v-btn>
-            </div>
-          </v-form>
+          <div class="d-flex align-center flex-grow-1">
+            <v-autocomplete
+              @change="setpokemonUrl"
+              color="red lighten-2"
+              :items="this.items"
+              v-model="searchValue"
+              class="d-flex ml-3 mt-6 text-capitalize"
+              clearable
+              outlined
+              dense
+              placeholder="Search 🔍"
+            ></v-autocomplete>
+          </div>
         </v-col>
       </v-row>
     </v-container>
@@ -51,13 +41,12 @@
     </div>
   </v-app-bar>
 </template>
-
 <script>
 export default {
   props: ['apiUrl'],
-
   data: () => ({
-    searchvalue: '',
+    searchValue: null,
+    items: [],
   }),
   computed: {
     switch1: {
@@ -71,10 +60,38 @@ export default {
   },
   methods: {
     setpokemonUrl() {
-      if (this.searchvalue !== '') {
-        this.$emit('setpokemonUrl', this.apiUrl + this.searchvalue.trim().toLowerCase());
+      if (this.searchValue) {
+        this.$emit('setpokemonUrl', this.apiUrl + this.searchValue.trim().toLowerCase());
+        this.searchValue = null;
+      }
+    },
+    async fetchData() {
+      try {
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=893', {
+          headers: {
+            accept: 'application/json',
+          },
+        });
+        if (response.ok) {
+          const data = await response.json();
+          this.items = data.results.map((x) => x.name.charAt(0).toUpperCase() + x.name.slice(1));
+        } else {
+          const data = await response.json();
+          this.error(data.message);
+        }
+      } catch (error) {
+        this.error(error.message);
       }
     },
   },
+  created() {
+    this.fetchData();
+  },
 };
 </script>
+
+<style>
+/* .v-list-item__title {
+  text-transform: capitalize;
+} */
+</style>
