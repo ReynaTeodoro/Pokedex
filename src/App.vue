@@ -1,9 +1,10 @@
 <template>
   <v-app
     style="
-    background: #121212;
-    background: -webkit-radial-gradient( #0D47A1, #0A2E50);
-    background: radial-gradient(#0D47A1, #0A2E50);"
+      background: #121212;
+      background: -webkit-radial-gradient(#0d47a1, #0a2e50);
+      background: radial-gradient(#0d47a1, #0a2e50);
+    "
   >
     <v-main>
       <router-view />
@@ -16,3 +17,9 @@ export default {
   name: 'App',
 };
 </script>
+
+<style>
+.v-image__image {
+  transition: all 0.3s ease-out;
+}
+</style>

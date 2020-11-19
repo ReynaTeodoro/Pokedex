@@ -87,9 +87,10 @@
         </div>
         <div id="right">
           <v-img
-            :src="`${imageUrl}` + pokemon.id + '.png'"
+            :src="`${imageUrl}${showShiny ? 'shiny/' : ''}${pokemon.id}.png`"
             class="rounded-circle grey ma-2"
             :class="[isDarkTheme ? 'darken-4' : 'lighten-4']"
+            @click="toggleShowShiny"
           ></v-img>
           <div class="d-flex justify-center">
             <div v-for="(type, index) in pokemon.types" :key="'typ' + index">
@@ -185,6 +186,7 @@ export default {
         max: 150,
       },
     },
+    showShiny: false,
   }),
   computed: {
     isDarkTheme() {
@@ -233,6 +235,9 @@ export default {
     getabilityUrl(url) {
       this.abilityUrl = url;
       this.abilityDialog = true;
+    },
+    toggleShowShiny() {
+      this.showShiny = !this.showShiny;
     },
   },
   created() {
