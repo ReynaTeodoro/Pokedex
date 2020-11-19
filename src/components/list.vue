@@ -17,7 +17,7 @@
             <v-card-title class="d-flex justify-space-between mb-6 text-capitalize" display: block
             >
             {{
-              pokemon.name.startsWith('nidoran') ? pokemon.name :
+              pokemon.name.match(/^(mr|nidoran)/) ? pokemon.name :
               pokemon.name.replace('-', ' ').split(" ")[0] }}
             </v-card-title>
             <v-card-actions class="text-center">
