@@ -65,7 +65,7 @@ export default {
         ],
       );
       items[0].children.sort((a, b) => a.level - b.level);
-      return items;
+      return items.filter((x) => x.children.length);
     },
   },
 };
